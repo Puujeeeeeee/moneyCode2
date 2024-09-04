@@ -42,8 +42,9 @@ const SavingScreen = () => {
   const [selectedBankAcc, setSelectedBankAcc] = useState(null);
   const [userData, setUserData] = useState(null);
   const [savingServiceData, setSavingServiceData] = useState(null);
-  const [selectedSavingServiceData, setSelectedSavingServiceData] =
-    useState(null);
+  const [selectedSavingServiceData, setSelectedSavingServiceData] = useState(
+    null
+  );
   const [
     selectedSavingServiceDataPeriodData,
     setSelectedSavingServiceDataPeriodData,

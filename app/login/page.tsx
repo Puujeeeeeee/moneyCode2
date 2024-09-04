@@ -18,7 +18,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useForm, Controller } from "react-hook-form";
 import axios from "axios";
 
-const LoginScreen = ({ onSwitchToRegister }) => {
+const LoginScreen = (): any => {
   const {
     control,
     handleSubmit,
@@ -27,7 +27,7 @@ const LoginScreen = ({ onSwitchToRegister }) => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     setLoading(true);
     try {
       const passwordHash = await sha256(data.password);
@@ -110,7 +110,9 @@ const LoginScreen = ({ onSwitchToRegister }) => {
                   fullWidth
                   margin="normal"
                   error={!!errors.username}
-                  helperText={errors.username ? errors.username.message : ""}
+                  helperText={
+                    errors.username ? (errors.username.message as string) : ""
+                  }
                 />
               )}
             />
@@ -128,7 +130,9 @@ const LoginScreen = ({ onSwitchToRegister }) => {
                   fullWidth
                   margin="normal"
                   error={!!errors.password}
-                  helperText={errors.password ? errors.password.message : ""}
+                  helperText={
+                    errors.password ? (errors.password.message as string) : ""
+                  }
                   InputProps={{
                     endAdornment: (
                       <IconButton
@@ -157,12 +161,7 @@ const LoginScreen = ({ onSwitchToRegister }) => {
               </Button>
             </Box>
             <Box mt={2}>
-              <Button
-                variant="outlined"
-                color="primary"
-                fullWidth
-                onClick={onSwitchToRegister}
-              >
+              <Button variant="outlined" color="primary" fullWidth>
                 Бүртгүүлэх
               </Button>
             </Box>
@@ -180,7 +179,7 @@ const LoginScreen = ({ onSwitchToRegister }) => {
   );
 };
 
-const sha256 = async (message) => {
+const sha256 = async (message: string) => {
   const msgBuffer = new TextEncoder().encode(message);
   const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
   const hashArray = Array.from(new Uint8Array(hashBuffer));

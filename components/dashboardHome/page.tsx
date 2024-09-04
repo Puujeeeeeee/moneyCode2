@@ -7,7 +7,7 @@ import { Box, Grid, Typography, Paper } from "@mui/material";
 
 const DashboardHome = () => {
   const [activeTab, setActiveTab] = useState("saving");
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<any>(null);
   const renderContent = () => {
     switch (activeTab) {
       case "loan":
@@ -21,7 +21,9 @@ const DashboardHome = () => {
     }
   };
   const getUserData = async () => {
-    const storedUserData = JSON.parse(localStorage.getItem("userInformation"));
+    const storedUserData = JSON.parse(
+      localStorage.getItem("userInformation") ?? ""
+    );
     setUserData(storedUserData);
   };
 

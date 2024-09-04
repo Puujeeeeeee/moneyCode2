@@ -6,16 +6,12 @@ import PersonIcon from "@mui/icons-material/Person";
 import Image from "next/image";
 
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import dayjs, { Dayjs } from "dayjs";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
-import { Calendar } from "@nextui-org/react";
-import { parseDate } from "@internationalized/date";
 import {
   Box,
   Grid,
@@ -23,7 +19,6 @@ import {
   Drawer,
   IconButton,
   Divider,
-  Container,
 } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -37,7 +32,9 @@ const UserProfile = () => {
   ).padStart(2, "0")}-${String(currentDate.getDate()).padStart(2, "0")}`;
 
   const getUserData = async () => {
-    const storedUserData = JSON.parse(localStorage.getItem("userInformation"));
+    const storedUserData = JSON.parse(
+      localStorage.getItem("userInformation") ?? ""
+    );
     setUserData(storedUserData);
   };
 
@@ -108,7 +105,7 @@ const UserProfile = () => {
             >
               <Grid item>
                 <Image
-                  src="/images/use photo.png"
+                  src="/images/usephoto.png"
                   alt="user"
                   width={60} // Smaller image
                   height={60}
@@ -129,7 +126,7 @@ const UserProfile = () => {
             <Grid item>
               <Box
                 sx={{
-                  backgroundColor: "grey.300", 
+                  backgroundColor: "grey.300",
                   padding: 2, // Reduce padding
                   borderRadius: 1,
                 }}
@@ -169,6 +166,7 @@ const UserProfile = () => {
             <Typography className="px-4 mt-4 font-semibold">
               Календар
             </Typography>
+
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DateCalendar", "DateCalendar"]}>
                 <DemoItem label="">
